@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Het gedicht 'mei' van Herman Gorter">
+    <meta name="keywords" content="gedicht, mei, herman, gorter">
+    <meta name="author" content="Brian">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gedicht - Mei</title>
+    <!-- Icoontje -->
+    <link rel="shortcut icon" href="afbeeldingen/icoontje.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Fonts van google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Imbue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@500&display=swap" rel="stylesheet">
+    <style>
+        
+        body { /* Opmaak van de achtergrond foto */
+            background: url('afbeeldingen/bos.jpg') no-repeat center center fixed; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .gedicht { /* Opmaak van het blauwe kader rond het gedicht */
+            width: 450px;
+            border: 3px solid #697fbd;
+            border-radius: 20px;
+            padding: 50px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background: #b2d8fd;
+            background-image: linear-gradient(to bottom right, #b2d8fd, #7ba3c9);
+            color: #8d1d33;
+            font-weight: bold;
+        }
+
+        .text { /* Opmaak van de tekst van get gedicht */
+            font-size: 10px;
+            margin-left: 30px;
+        }
+
+        .titel { /* Opmaak van de titel boven de tekst */
+            text-align: center;
+            text-shadow: 2px 2px white;
+            font-family: Verdana;
+            text-decoration: underline;
+        }
+
+        .info { /* Opmaak van de meer-info knop */
+            display: block;
+            color: rgb(180, 118, 1);
+            background:  #7ba3c9;
+            text-decoration: none;
+            font-size: 25px;
+            text-align: center;
+            padding: 10px;
+            border: 3px solid #7ba3c9;
+            outline: 3px solid rgb(180, 118, 1);
+            font-family: Arial;
+            transition: all .5s;
+            text-shadow: 1px 1px black;
+        }
+
+        .info:hover { /* Opmaak van de meer-info knop wanneer er met een muis wordt overgegaan */
+            color: #7ba3c9;
+            background: rgb(180, 118, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="gedicht">
+        <h1 class="titel">Mei - Herman Gorter</h1>
+        <pre class="text">
+            Een nieuwe lente en een nieuw geluid:
+            Ik wil dat dit lied klinkt als het gefluit,
+            Dat ik vaak hoorde voor een zomernacht
+            In een oud stadje, langs de watergracht -
+            In huis was 't donker, maar de stille straat
+            Vergaarde schemer, aan de lucht blonk laat
+            Nog licht, er viel een gouden blanke schijn
+            Over de gevels in mijn raamkozijn.
+            Dan blies een jongen als een orgelpijp,
+            De klanken schudden in de lucht zo rijp
+            Als jonge kersen, wen een lentewind
+            In 't bosje opgaat en zijn reis begint.
+            Hij dwaald' over de bruggen, op den wal
+            Van 't water, langzaam gaande, overal
+            Als 'n jonge vogel fluitend, onbewust
+            Van eigen blijheid om de avondrust.
+            En menig moe man, die zijn avondmaal
+            Nam, luisterde, als naar een oud verhaal,
+            Glimlachend, en een hand die 't venster sloot,
+            Talmde een poze wijl de jongen floot.
+        </pre>
+        <!-- Link naar de meer-info pagina -->
+        <a href="meer-info.html" class="info">Meer Informatie</a>
+    </div>
+
+    <!-- Script om de tekst van het gedicht een speelse opmaak te geven-->
+    <script defer>
+
+        // Deze functie kiest een willekeurig getal tuzzen 2 andere getallen
+        function randomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Lijst van alle mogelijke google font families
+        fontFams = ["Roboto","Lato","Montserrat","Imbue","Karla"]
+
+        // Lijst van alle mogelijke text kleuren
+        textColors = ["#8d1d33","#751226","#a11531","#6e1829","#d93b5a"]
+
+        // Lees de tekst van het gedicht in
+        textVak = document.querySelector("pre.text")
+
+        // Split de tekst op in lijntjes ipv 1 lang lijntje
+        lines = textVak.innerText.split("\n")
+
+        // Maak de tekst ontzichtbaar (tot de nieuwe opmaak is toegepast)
+        textVak.innerText = "";
+
+        // Voor alle lijntjes doe het volgende:
+        for (i in lines){
+
+            // Split alle woorden van elkaar op dat lijntje
+            woorden = lines[i].trim().split(" ")
+
+            // Voor alle woorden op het lijntje doe het volgende:
+            for(w in woorden){
+
+                // Selecteer een willekeurige font-familie uit de lijst of kies voor Arial
+                fontFam = fontFams[randomInt(0, 10)] || "Arial"
+
+                // Selecteer een willekeurige text kleur uit de lijst
+                textColor = textColors[randomInt(0, textColors.length-1)]
+
+                // Selecteer een willekeurige text grootte tussen 18 en 22
+                fontSize = randomInt(18, 22)
+
+                // Voeg de willekeurige font-familie, willekeurige kleur, en willekeurige grootte toe aan het woord
+                document.querySelector("pre.text").innerHTML += `<font style="font-family:${fontFam}; font-size:${fontSize}px; color:${textColor}">` + woorden[w] + "</font> "
+
+            }
+            // Zorg ervoor dat alle lijntjes fysiek onder elkaar staan
+            document.querySelector("pre.text").innerHTML += "<br>"
+        }
+        
+    </script>
+
+</body>
+</html>
